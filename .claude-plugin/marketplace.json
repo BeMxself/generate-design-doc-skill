@@ -1,0 +1,29 @@
+{
+  "name": "generate-design-doc-skill",
+  "owner": {
+    "name": "BeMxself"
+  },
+  "metadata": {
+    "description": "Marketplace containing the generate-design-doc plugin.",
+    "version": "0.1.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "generate-design-doc",
+      "source": "./plugins/generate-design-doc",
+      "description": "Generate design docs by scanning code (general + Ouroboros-specialized guides).",
+      "version": "0.1.0",
+      "author": {
+        "name": "BeMxself"
+      },
+      "repository": "https://github.com/BeMxself/generate-design-doc-skill",
+      "keywords": [
+        "documentation",
+        "skills",
+        "reverse-engineering",
+        "design-doc"
+      ]
+    }
+  ]
+}
