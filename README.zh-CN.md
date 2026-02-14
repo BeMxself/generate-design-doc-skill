@@ -32,20 +32,28 @@
 /generate-design-doc:generate-design-doc
 ```
 
-## 安装（Codex CLI）
+## 安装（Codex）
 
-Codex 会在启动时从 `~/.agents/skills/` 发现可用 skills。安装方式如下：
+Codex 支持通过 `~/.agents/skills/` 和仓库内 `.agents/skills/` 发现 skills。
+
+推荐方式：在 Codex 中使用 OpenAI 官方 skill installer：
+
+```text
+$skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/plugins/generate-design-doc/skills/generate-design-doc
+```
+
+手动兜底方式：
 
 ```bash
 # 1. 克隆本仓库（位置随意）
 git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.codex/third_party/generate-design-doc-skill
 
-# 2. 将 skill 目录软链接到 Codex 的发现目录
+# 2. 将 skill 目录软链接到 Codex 全局发现目录
 mkdir -p ~/.agents/skills
 ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
-创建软链接后重启 Codex。
+如果你在本仓库内运行 Codex，也可以直接使用仓库内已提交的 `.agents/skills/generate-design-doc`。
 
 ## 安装（Kiro CLI）
 
@@ -88,8 +96,18 @@ kiro-cli --agent generate-design-doc chat
 - 产出结构化的 `DESIGN.md`（或你指定的文件名），便于评审与迭代
 - 通过渐进式分析与确认步骤，让你尽早纠正错误假设，减少“写偏了”的风险
 
+## 在 Codex 中使用
+
+在 Codex 中可这样调用：
+
+```text
+$generate-design-doc
+```
+
 ## 仓库结构
 
 - `.claude-plugin/marketplace.json`：marketplace 目录
 - `plugins/generate-design-doc/.claude-plugin/plugin.json`：插件清单（manifest）
 - `plugins/generate-design-doc/skills/generate-design-doc/`：Skill 本体与配套指南
+- `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`：Codex 元数据
+- `.agents/skills/generate-design-doc`：仓库内 Codex skill 入口（软链接）

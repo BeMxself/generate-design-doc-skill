@@ -1,0 +1,3 @@
+display_name: Generate Design Doc
+short_description: Scan an existing codebase or module and generate a design document with progressive analysis and confirmation checkpoints.
+default_prompt: Analyze the selected module, confirm module-type assumptions, then draft a complete DESIGN.md with architecture, key flows, and operational notes.

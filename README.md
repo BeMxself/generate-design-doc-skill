@@ -32,20 +32,28 @@ The skill is namespaced under the plugin name:
 /generate-design-doc:generate-design-doc
 ```
 
-## Install (Codex CLI)
+## Install (Codex)
 
-Codex discovers skills from `~/.agents/skills/` at startup. To install this skill:
+Codex supports skills via `~/.agents/skills/` and repository-local `.agents/skills/`.
+
+Recommended: use OpenAI's skill installer in Codex:
+
+```text
+$skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/plugins/generate-design-doc/skills/generate-design-doc
+```
+
+Manual fallback:
 
 ```bash
 # 1. Clone this repo (anywhere you like)
 git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.codex/third_party/generate-design-doc-skill
 
-# 2. Symlink the skill folder into Codex's skill discovery directory
+# 2. Symlink the skill folder into Codex's global discovery directory
 mkdir -p ~/.agents/skills
 ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
-Restart Codex after creating the symlink.
+If you run Codex inside this repository, it can also discover the checked-in local link at `.agents/skills/generate-design-doc`.
 
 ## Install (Kiro CLI)
 
@@ -88,8 +96,18 @@ kiro-cli --agent generate-design-doc chat
 - Proposes a structured `DESIGN.md` (or your chosen filename) for review
 - Uses progressive analysis + a confirmation step so you can correct assumptions early
 
+## Use in Codex
+
+Invoke the skill in Codex with:
+
+```text
+$generate-design-doc
+```
+
 ## Repo Layout
 
 - `.claude-plugin/marketplace.json`: marketplace catalog
 - `plugins/generate-design-doc/.claude-plugin/plugin.json`: plugin manifest
 - `plugins/generate-design-doc/skills/generate-design-doc/`: the skill and guides
+- `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`: Codex metadata
+- `.agents/skills/generate-design-doc`: repo-local Codex skill entry (symlink)
