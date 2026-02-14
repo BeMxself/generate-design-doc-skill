@@ -34,7 +34,7 @@ The skill is namespaced under the plugin name:
 
 ## Install (Codex)
 
-Codex supports skills via `~/.agents/skills/` and repository-local `.agents/skills/`.
+Codex supports skills via `~/.agents/skills/`.
 
 Recommended: use OpenAI's skill installer in Codex:
 
@@ -53,7 +53,7 @@ mkdir -p ~/.agents/skills
 ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
-If you run Codex inside this repository, it can also discover the checked-in local link at `.agents/skills/generate-design-doc`.
+You can optionally use a repo-local `.agents/skills/` layout for team sharing, but it is not required for this repository.
 
 ## Install (Kiro CLI)
 
@@ -110,4 +110,3 @@ $generate-design-doc
 - `plugins/generate-design-doc/.claude-plugin/plugin.json`: plugin manifest
 - `plugins/generate-design-doc/skills/generate-design-doc/`: the skill and guides
 - `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`: Codex metadata
-- `.agents/skills/generate-design-doc`: repo-local Codex skill entry (symlink)

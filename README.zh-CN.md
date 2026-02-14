@@ -34,7 +34,7 @@
 
 ## 安装（Codex）
 
-Codex 支持通过 `~/.agents/skills/` 和仓库内 `.agents/skills/` 发现 skills。
+Codex 支持通过 `~/.agents/skills/` 发现 skills。
 
 推荐方式：在 Codex 中使用 OpenAI 官方 skill installer：
 
@@ -53,7 +53,7 @@ mkdir -p ~/.agents/skills
 ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
-如果你在本仓库内运行 Codex，也可以直接使用仓库内已提交的 `.agents/skills/generate-design-doc`。
+仓库内的 `.agents/skills/` 属于可选的团队分发模式，不是本仓库安装该 skill 的必要条件。
 
 ## 安装（Kiro CLI）
 
@@ -110,4 +110,3 @@ $generate-design-doc
 - `plugins/generate-design-doc/.claude-plugin/plugin.json`：插件清单（manifest）
 - `plugins/generate-design-doc/skills/generate-design-doc/`：Skill 本体与配套指南
 - `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`：Codex 元数据
-- `.agents/skills/generate-design-doc`：仓库内 Codex skill 入口（软链接）
