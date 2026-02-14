@@ -1,74 +1,74 @@
+中文 | [English](README.en.md)
+
 # generate-design-doc-skill
 
-[English](README.md) | [中文](README.zh-CN.md)
+这是一个 Claude Code 的插件市场（marketplace）仓库，目前只包含一个插件：`generate-design-doc`。
 
-A Claude Code plugin marketplace containing a single plugin: `generate-design-doc`.
+它提供了一个 Skill：`generate-design-doc`。该 Skill 会扫描你指定的现有代码库/模块，并生成一份设计文档（默认文件名为 `DESIGN.md`）。生成过程采用“渐进式分析 + 关键假设确认”的工作流，避免一开始就把模块边界、职责或技术栈判断错。
 
-It provides the `generate-design-doc` Skill, which scans an existing codebase/module and produces a design document (default `DESIGN.md`) with a progressive analysis workflow and a confirmation step to avoid misclassification.
+另见：`plugins/generate-design-doc/README.md`
 
-See also: `plugins/generate-design-doc/README.md`
+## 安装（Claude Code）
 
-## Install (Claude Code)
-
-Add this marketplace:
+添加该 marketplace：
 
 ```
 /plugin marketplace add BeMxself/generate-design-doc-skill
 ```
 
-Install the plugin:
+安装插件：
 
 ```
 /plugin install generate-design-doc@generate-design-doc-skill
 ```
 
-Restart Claude Code after installation.
+安装后重启 Claude Code。
 
-## Use
+## 使用
 
-The skill is namespaced under the plugin name:
+该 Skill 按插件名进行命名空间隔离：
 
 ```
 /generate-design-doc:generate-design-doc
 ```
 
-## Install (Codex)
+## 安装（Codex）
 
-Codex supports skills via `~/.agents/skills/`.
+Codex 支持通过 `~/.agents/skills/` 发现 skills。
 
-Recommended: use OpenAI's skill installer in Codex:
+推荐方式：在 Codex 中使用 OpenAI 官方 skill installer：
 
 ```text
 $skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/plugins/generate-design-doc/skills/generate-design-doc
 ```
 
-Manual fallback:
+手动兜底方式：
 
 ```bash
-# 1. Clone this repo (anywhere you like)
+# 1. 克隆本仓库（位置随意）
 git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.codex/third_party/generate-design-doc-skill
 
-# 2. Symlink the skill folder into Codex's global discovery directory
+# 2. 将 skill 目录软链接到 Codex 全局发现目录
 mkdir -p ~/.agents/skills
 ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
-You can optionally use a repo-local `.agents/skills/` layout for team sharing, but it is not required for this repository.
+仓库内的 `.agents/skills/` 属于可选的团队分发模式，不是本仓库安装该 skill 的必要条件。
 
-## Install (Kiro CLI)
+## 安装（Kiro CLI）
 
-Kiro CLI can load skills from your project’s `.kiro/skills/` via agent resources (e.g. `skill://.kiro/skills/**/SKILL.md`).
+Kiro CLI 可以通过 agent 的 `resources` 加载项目内 `.kiro/skills/` 下的 skills（例如 `skill://.kiro/skills/**/SKILL.md`）。
 
 ```bash
-# 1. Clone this repo (anywhere you like)
+# 1. 克隆本仓库（位置随意）
 git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.kiro/third_party/generate-design-doc-skill
 
-# 2. Register the skill in the current project
+# 2. 在当前项目中注册该 skill
 mkdir -p .kiro/skills
 ln -s ~/.kiro/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc .kiro/skills/generate-design-doc
 ```
 
-If your agent does not already include `skill://.kiro/skills/**/SKILL.md` in `resources`, create one and add it:
+如果你使用的 agent 尚未在 `resources` 中包含 `skill://.kiro/skills/**/SKILL.md`，可以创建一个 agent 并补上该资源：
 
 ```bash
 mkdir -p .kiro/agents
@@ -76,7 +76,7 @@ kiro-cli agent create --name generate-design-doc --directory .kiro/agents
 kiro-cli agent edit --name generate-design-doc --path .kiro/agents/generate-design-doc.json
 ```
 
-In `.kiro/agents/generate-design-doc.json`, ensure `resources` includes:
+在 `.kiro/agents/generate-design-doc.json` 中，确认 `resources` 包含：
 
 ```json
 [
@@ -84,29 +84,29 @@ In `.kiro/agents/generate-design-doc.json`, ensure `resources` includes:
 ]
 ```
 
-Then start chat with the agent:
+然后用该 agent 启动聊天：
 
 ```
 kiro-cli --agent generate-design-doc chat
 ```
 
-## What it does
+## 它能做什么
 
-- Reads a target codebase/module and summarizes architecture, responsibilities, and key flows
-- Proposes a structured `DESIGN.md` (or your chosen filename) for review
-- Uses progressive analysis + a confirmation step so you can correct assumptions early
+- 阅读目标代码库/模块，梳理整体架构、模块职责与关键流程
+- 产出结构化的 `DESIGN.md`（或你指定的文件名），便于评审与迭代
+- 通过渐进式分析与确认步骤，让你尽早纠正错误假设，减少“写偏了”的风险
 
-## Use in Codex
+## 在 Codex 中使用
 
-Invoke the skill in Codex with:
+在 Codex 中可这样调用：
 
 ```text
 $generate-design-doc
 ```
 
-## Repo Layout
+## 仓库结构
 
-- `.claude-plugin/marketplace.json`: marketplace catalog
-- `plugins/generate-design-doc/.claude-plugin/plugin.json`: plugin manifest
-- `plugins/generate-design-doc/skills/generate-design-doc/`: the skill and guides
-- `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`: Codex metadata
+- `.claude-plugin/marketplace.json`：marketplace 目录
+- `plugins/generate-design-doc/.claude-plugin/plugin.json`：插件清单（manifest）
+- `plugins/generate-design-doc/skills/generate-design-doc/`：Skill 本体与配套指南
+- `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`：Codex 元数据

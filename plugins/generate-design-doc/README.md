@@ -1,6 +1,6 @@
 # generate-design-doc (Claude Code plugin)
 
-[Repo README](../../README.md) | [中文](../../README.zh-CN.md)
+[中文](../../README.md) | [English](../../README.en.md)
 
 Provides one Skill:
 
