@@ -6,12 +6,12 @@
   "metadata": {
     "description": "Marketplace containing the generate-design-doc plugin.",
     "version": "0.1.0",
-    "pluginRoot": "./plugins"
+    "pluginRoot": "."
   },
   "plugins": [
     {
       "name": "generate-design-doc",
-      "source": "./plugins/generate-design-doc",
+      "source": ".",
       "description": "Generate design docs by scanning code (general + Ouroboros-specialized guides).",
       "version": "0.1.0",
       "author": {

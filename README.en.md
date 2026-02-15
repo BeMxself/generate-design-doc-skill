@@ -6,8 +6,6 @@ A Claude Code plugin marketplace containing a single plugin: `generate-design-do
 
 It provides the `generate-design-doc` Skill, which scans an existing codebase/module and produces a design document (default `DESIGN.md`) with a progressive analysis workflow and a confirmation step to avoid misclassification.
 
-See also: `plugins/generate-design-doc/README.md`
-
 ## Install (Claude Code)
 
 Add this marketplace:
@@ -19,7 +17,7 @@ Add this marketplace:
 Install the plugin:
 
 ```
-/plugin install generate-design-doc@generate-design-doc-skill
+/plugin install generate-design-doc@BeMxself-generate-design-doc-skill
 ```
 
 Restart Claude Code after installation.
@@ -39,7 +37,7 @@ Codex supports skills via `~/.agents/skills/`.
 Recommended: use OpenAI's skill installer in Codex:
 
 ```text
-$skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/plugins/generate-design-doc/skills/generate-design-doc
+$skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/skills/generate-design-doc
 ```
 
 Manual fallback:
@@ -50,7 +48,7 @@ git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.codex/thi
 
 # 2. Symlink the skill folder into Codex's global discovery directory
 mkdir -p ~/.agents/skills
-ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
+ln -s ~/.codex/third_party/generate-design-doc-skill/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
 You can optionally use a repo-local `.agents/skills/` layout for team sharing, but it is not required for this repository.
@@ -65,7 +63,7 @@ git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.kiro/thir
 
 # 2. Register the skill in the current project
 mkdir -p .kiro/skills
-ln -s ~/.kiro/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc .kiro/skills/generate-design-doc
+ln -s ~/.kiro/third_party/generate-design-doc-skill/skills/generate-design-doc .kiro/skills/generate-design-doc
 ```
 
 If your agent does not already include `skill://.kiro/skills/**/SKILL.md` in `resources`, create one and add it:
@@ -107,6 +105,6 @@ $generate-design-doc
 ## Repo Layout
 
 - `.claude-plugin/marketplace.json`: marketplace catalog
-- `plugins/generate-design-doc/.claude-plugin/plugin.json`: plugin manifest
-- `plugins/generate-design-doc/skills/generate-design-doc/`: the skill and guides
-- `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`: Codex metadata
+- `.claude-plugin/plugin.json`: plugin manifest
+- `skills/generate-design-doc/`: the skill and guides
+- `skills/generate-design-doc/agents/openai.yaml`: Codex metadata

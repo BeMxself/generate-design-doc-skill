@@ -6,8 +6,6 @@
 
 它提供了一个 Skill：`generate-design-doc`。该 Skill 会扫描你指定的现有代码库/模块，并生成一份设计文档（默认文件名为 `DESIGN.md`）。生成过程采用“渐进式分析 + 关键假设确认”的工作流，避免一开始就把模块边界、职责或技术栈判断错。
 
-另见：`plugins/generate-design-doc/README.md`
-
 ## 安装（Claude Code）
 
 添加该 marketplace：
@@ -19,7 +17,7 @@
 安装插件：
 
 ```
-/plugin install generate-design-doc@generate-design-doc-skill
+/plugin install generate-design-doc@BeMxself-generate-design-doc-skill
 ```
 
 安装后重启 Claude Code。
@@ -39,7 +37,7 @@ Codex 支持通过 `~/.agents/skills/` 发现 skills。
 推荐方式：在 Codex 中使用 OpenAI 官方 skill installer：
 
 ```text
-$skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/plugins/generate-design-doc/skills/generate-design-doc
+$skill-installer install the generate-design-doc skill from https://github.com/BeMxself/generate-design-doc-skill/tree/master/skills/generate-design-doc
 ```
 
 手动兜底方式：
@@ -50,7 +48,7 @@ git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.codex/thi
 
 # 2. 将 skill 目录软链接到 Codex 全局发现目录
 mkdir -p ~/.agents/skills
-ln -s ~/.codex/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc ~/.agents/skills/generate-design-doc
+ln -s ~/.codex/third_party/generate-design-doc-skill/skills/generate-design-doc ~/.agents/skills/generate-design-doc
 ```
 
 仓库内的 `.agents/skills/` 属于可选的团队分发模式，不是本仓库安装该 skill 的必要条件。
@@ -65,7 +63,7 @@ git clone https://github.com/BeMxself/generate-design-doc-skill.git ~/.kiro/thir
 
 # 2. 在当前项目中注册该 skill
 mkdir -p .kiro/skills
-ln -s ~/.kiro/third_party/generate-design-doc-skill/plugins/generate-design-doc/skills/generate-design-doc .kiro/skills/generate-design-doc
+ln -s ~/.kiro/third_party/generate-design-doc-skill/skills/generate-design-doc .kiro/skills/generate-design-doc
 ```
 
 如果你使用的 agent 尚未在 `resources` 中包含 `skill://.kiro/skills/**/SKILL.md`，可以创建一个 agent 并补上该资源：
@@ -107,6 +105,6 @@ $generate-design-doc
 ## 仓库结构
 
 - `.claude-plugin/marketplace.json`：marketplace 目录
-- `plugins/generate-design-doc/.claude-plugin/plugin.json`：插件清单（manifest）
-- `plugins/generate-design-doc/skills/generate-design-doc/`：Skill 本体与配套指南
-- `plugins/generate-design-doc/skills/generate-design-doc/agents/openai.yaml`：Codex 元数据
+- `.claude-plugin/plugin.json`：插件清单（manifest）
+- `skills/generate-design-doc/`：Skill 本体与配套指南
+- `skills/generate-design-doc/agents/openai.yaml`：Codex 元数据
