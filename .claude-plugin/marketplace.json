@@ -1,17 +1,17 @@
 {
-  "name": "generate-design-doc-skill",
+  "name": "BeMxself-generate-design-doc-skill",
   "owner": {
     "name": "BeMxself"
   },
   "metadata": {
     "description": "Marketplace containing the generate-design-doc plugin.",
     "version": "0.1.0",
-    "pluginRoot": "."
+    "pluginRoot": "./"
   },
   "plugins": [
     {
       "name": "generate-design-doc",
-      "source": ".",
+      "source": "./",
       "description": "Generate design docs by scanning code (general + Ouroboros-specialized guides).",
       "version": "0.1.0",
       "author": {
